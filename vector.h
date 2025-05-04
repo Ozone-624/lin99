@@ -136,11 +136,13 @@ void* zalloc(size_t sz_Size) {
  * vector_t - Generic vector container with generic element arithmetic and memory operations.
  *
  * Members:
- * - psz_length: Number of elements in the vector
- * - psz_element_size: Size (in bytes) of each element
- * - p_buffer: Pointer to contiguous memory block of elements
- * - allocator: User-defined memory allocation interface
- * - pfn_add/sub/mul/div/dot/scale/norm/cpy: Function pointers for element operations
+ * - s32_Type: Provided value specifying the type of element.  May be predefined or user provided.
+ * - p_StorageBuffer: Address to location of vector data in memory.
+ * - sz_BufferSize: Total size of the buffer, calculated as sz_ElementSize * sz_ElementCount.
+ * - sz_ElementSize: Size (in bytes) of each element in the vector.
+ * - sz_ElementCount: Number of elements in vector.
+ * - pfn_ElementAdd/pfn_ElementSubtract/pfn_ElementMultiply/pfn_ElementDivide: User-provided function callbacks for arithmetic operations (may be done easily with provided macros).
+ * - pfn_Allocate/pfn_Free: User-provided memory allocation callbacks that may be either automatically filled by vctcreate or manually-set to use custom memory allocation tools.
  */
 typedef struct vector_t__ {
 	TYPE s32_Type;
@@ -164,9 +166,9 @@ typedef struct vector_t__ {
  * vctcreate - Allocates and returns a new vector_t instance with the given length and element size.
  *
  * Parameters:
- * - csz_length: Number of elements
- * - csz_element_size: Size in bytes of each element
- * - allocator: Pointer to custom allocator (can be NULL for default)
+ * - pv_Vector: Pointer to the location in memory where the new vector type is stored.
+ * - pfn_AllocateMemory: Callback function to memory allocation.
+ * - pfn_FreeMemory: Callback function to memory deallocation.
  *
  * Returns:
  * - On success: 0
