@@ -8,7 +8,7 @@
 /*
  * vector.h
  *
- * A simple, type-generic vector math library in C99.
+ * A pure C99 linear algebra header for type-generic vectors.
  *
  * Features:
  * - Type-generic vector representation using void pointers
