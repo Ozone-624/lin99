@@ -1,0 +1,7 @@
+URGENT:
+Test add_vectors.c
+
+SOON:
+Make dot_product.c
+Make magnitude.c
+Make scale_vector.c
