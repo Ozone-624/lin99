@@ -21,10 +21,9 @@ int vctcreate(vector_t* pv_Vector, void* (*pfn_AllocateMemory)(size_t), void (*p
   	return -1;  
   }
  
-  // Set some default values to start in case the user doesn't want to read documentation
   // We can't use aligned_alloc here since this project is intended to be strictly C99, and aligned_alloc wasn't introduced until C11
-	pv_Vector->pfn_Allocate = (pfn_AllocateMemory != NULL) ? pfn_AllocateMemory : zalloc;
-	pv_Vector->pfn_Free = (pfn_FreeMemory != NULL) ? pfn_FreeMemory : free;
+	pv_Vector->pfn_Allocate = ((pfn_AllocateMemory != NULL) || (pv_Vector->pfn_Allocate != NULL)) ? pfn_AllocateMemory : zalloc;
+	pv_Vector->pfn_Free = ((pfn_FreeMemory != NULL) || (pv_Vector->pfn_Free != NULL)) ? pfn_FreeMemory : free;
  
 	pv_Vector->sz_BufferSize = pv_Vector->sz_ElementSize * pv_Vector->sz_ElementCount;
 	pv_Vector->p_StorageBuffer = pv_Vector->pfn_Allocate(pv_Vector->sz_BufferSize);
