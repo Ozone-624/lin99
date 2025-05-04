@@ -11,4 +11,4 @@ lin99 aims to make creating type-generic linear algebra structures simple by pro
 This project is released under the GNU General Public License v3.0.
 
 ## Miscellaneous
-Thank you for using lin99 in your projects!  I hope to continue improving this so that it may be used by everyone!
+Thank you for using lin99 in your projects!
