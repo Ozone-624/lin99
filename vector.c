@@ -5,11 +5,6 @@
 
 #include "vector.h"
 
-// One-argument
-void* zalloc(size_t sz_Size) {
-  return calloc(sz_Size, 1);
-}
-
 int vctcreate(vector_t* pv_Vector, void* (*pfn_AllocateMemory)(size_t), void (*pfn_FreeMemory)(void*)) {
   if(pv_Vector == NULL) {
 	printf("NULL REFERENCE PASSED!\n");
@@ -209,7 +204,7 @@ void vctdot(void* p_Product, const vector_t* cpv_A, const vector_t* cpv_B) {
 
 #define SCALE_OP_DEF(fn_Name, pfn_Name) \
 void fn_Name(void* pv_Scaled, const vector_t* cpv_Vector, const void* cp_Scalar) { \
-  if(cpv_Vector == NULL || cpv_Scalar == NULL || pv_Scaled == NULL) { \
+  if(cpv_Vector == NULL || cp_Scalar == NULL || pv_Scaled == NULL) { \
 	printf("NULL REFERENCE PASSED!\n"); \
 	return; \
   } \
@@ -298,7 +293,7 @@ void vctnorm(vector_t* pv_Normalized, const vector_t* cpv_Vector, void (*pfn_Squ
   	return;
   }
 
-	vctscaleinv(pv_Normalized, cpv_Vector, pu8_Magnitude);
+f 	vctscaleinv(pv_Normalized, cpv_Vector, pu8_Magnitude);
 
   cpv_Vector->pfn_Free(pu8_Magnitude);
 
