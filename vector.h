@@ -128,7 +128,7 @@ GENERAL_OP_DEFINITION(div, type, /)
  *  - On success: Pointer to the beginning of the allocation
  *  - On failure: NULL
  */
-void* zalloc(size_t sz_Size) {
+static void* zalloc(size_t sz_Size) {
   return calloc(sz_Size, 1);
 }
 
